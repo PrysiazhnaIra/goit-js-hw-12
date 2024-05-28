@@ -1,0 +1,12 @@
+import{S as p,i}from"./assets/vendor-8c59ed88.js";(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))n(e);new MutationObserver(e=>{for(const r of e)if(r.type==="childList")for(const a of r.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&n(a)}).observe(document,{childList:!0,subtree:!0});function o(e){const r={};return e.integrity&&(r.integrity=e.integrity),e.referrerPolicy&&(r.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?r.credentials="include":e.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function n(e){if(e.ep)return;e.ep=!0;const r=o(e);fetch(e.href,r)}})();function u(t){const s="https://pixabay.com/api/",o=new URLSearchParams({key:"44028683-118753c7a8296875ea6775d6e",q:t,image_type:"photo",orientation:"horizontal",safesearch:"true",per_page:"9"}),n=`${s}?${o}`;return fetch(n).then(e=>e.json())}function m(t){return`
+    <div class="gallery_block">
+    <a href="${t.largeImageURL}">
+    <img src="${t.webformatURL}" alt="${t.tags}" class="picture"></a>
+    <ul class="property_list">
+    <li class="property_elem">Likes <span class="span_property">${t.likes}</span></li>
+    <li class="property_elem">Views <span class="span_property">${t.views}</span></li>
+    <li class="property_elem">Comments <span class="span_property">${t.comments}</span></li>
+    <li class="property_elem">Downloads <span class="span_property">${t.downloads}</span></li>
+    </ul>
+    </div>`}function f(t){return t.map(m).join("")}var d=new p(".gallery_block a",{captionsData:"alt",captionDelay:250});const y=document.querySelector(".form"),l=document.querySelector(".images_container"),c=document.querySelector(".loader");y.addEventListener("submit",t=>{t.preventDefault(),l.innerHTML="";const s=t.target.elements.query.value.trim();s?(c.hidden=!1,u(s).then(o=>{if(o.hits.length!=0){const n=f(o.hits);l.innerHTML=n,d.refresh()}else i.error({title:"Error",message:"Sorry, there are no images matching your search query. Please try again!",position:"topCenter"})}).catch(o=>{i.error({title:"Error",message:"Failed to fetch data. Please try again later!",position:"topCenter"})}).finally(()=>{c.hidden=!0})):i.warning({title:"Warning",message:"You should input something",position:"topCenter"})});
+//# sourceMappingURL=commonHelpers.js.map
