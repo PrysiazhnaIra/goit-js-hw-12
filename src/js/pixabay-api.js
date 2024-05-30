@@ -1,5 +1,6 @@
+import axios from "axios";
 
-export function searchImage(query) {
+export async function searchImage(query) {
     const BASE_URL = 'https://pixabay.com/api/';
 
     const params = new URLSearchParams({
@@ -8,11 +9,10 @@ export function searchImage(query) {
         image_type: 'photo',
         orientation: 'horizontal',
         safesearch: 'true',
-        per_page: '9',
+        per_page: '15',
     });
 
     const url = `${BASE_URL}?${params}`;
 
-    return fetch(url)
-          .then(response => response.json());
+    return await axios.get(url);
 }

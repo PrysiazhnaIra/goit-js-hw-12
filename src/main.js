@@ -14,7 +14,7 @@ const imagesList = document.querySelector('.images_container');
 
 const spinner = document.querySelector(".loader");
 
-myForm.addEventListener("submit", (event) => {
+myForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     imagesList.innerHTML = "";
@@ -30,34 +30,30 @@ myForm.addEventListener("submit", (event) => {
     } else {
         spinner.hidden = false;
 
-        searchImage(query)
-            .then(data => {
-
-                if(data.hits.length != 0) {
-                    const markup = imagesTemplate(data.hits);
-                    imagesList.innerHTML = markup;
-                    
-                    lightbox.refresh();
-
-                } else {
-                    iziToast.error({
-                        title: 'Error',
-                        message: 'Sorry, there are no images matching your search query. Please try again!',
-                        position: 'topCenter',
-                    });
-                }
+        try {
+            let data = await searchImage(query);
+            if(data.data.hits.length != 0) {
+                const markup = imagesTemplate(data.data.hits);
+                imagesList.innerHTML = markup;
                 
-            })
-            .catch(err => {
+                lightbox.refresh();
+
+            } else {
+                iziToast.error({
+                    title: 'Error',
+                    message: 'Sorry, there are no images matching your search query. Please try again!',
+                    position: 'topCenter',
+                });
+            }
+        } catch(error) {
                 iziToast.error({
                     title: 'Error',
                     message: 'Failed to fetch data. Please try again later!',
                     position: 'topCenter',
                 });
-            })
-            .finally(() => {
+        } finally {
                 spinner.hidden = true;
-            })
+        }
     }    
 });
 

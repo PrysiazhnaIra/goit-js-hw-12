@@ -13,8 +13,8 @@
   font-weight: 400;
 
   color: #242424;
-  background-color: rgba(255, 255, 255, 0.87);
-
+  /* background-color: rgba(255, 255, 255, 0.87); */
+  background: radial-gradient(circle, rgba(37,152,177,0) 0%, rgba(98,151,60,0.9542410714285714) 100%);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -49,9 +49,8 @@
   padding-bottom: 8px;
   padding-left: 16px;
   width: 272px;
-  background-color: #FFF;;
-  outline: transparent;
-
+  background-color: #F0FFF0;
+  outline: #237A57;
   color: #2E2F42;
   font-family: Montserrat;
   font-size: 16px;
@@ -59,6 +58,7 @@
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: 0.04em;
+  
 }
 
 .input:focus,
@@ -67,13 +67,15 @@
 }
 
 .input:active {
-  border: 1px solid #4E75FF;
+  border: 1px solid #0f884b;
 }
 
 .btn {
   border: none;
   border-radius: 8px;
-  background: #4E75FF;
+  background-image: linear-gradient(to right, #093028 0%, #237A57  51%, #093028  100%);
+  transition: 0.5s;
+  background-size: 200% auto;
   color: #FFF;
   font-family: Montserrat;
   font-size: 16px;
@@ -81,12 +83,40 @@
   font-weight: 500;
   line-height: 1.5;
   letter-spacing: 0.04em;
-  padding: 8px 16px;
+  padding: 8px 40px;
 }
 
 .btn:focus,
 .btn:hover {
-  background-color: #6C8CFF;;
+  background-position: right center;
+}
+
+.btn_more_block{
+  margin-top: 24px;
+}
+
+.btn_more {
+  border: none;
+  border-radius: 8px;
+  background-image: linear-gradient(to right, #093028 0%, #237A57  51%, #093028  100%);
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: #FFF;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  padding: 8px 40px;
+  display: flex;
+  margin: auto;
+  margin-bottom: 24px;
+}
+
+.btn_more:focus,
+.btn_more:hover {
+  background-position: right center;
 }
 
 .images_container {
@@ -120,6 +150,7 @@
   padding-bottom: 4px;
   padding-left: 20px;
   padding-right: 25px;
+  background-color: #F0FFF0;
 }
 
 .property_elem {
@@ -150,7 +181,7 @@
   width: 48px;
   height: 48px;
   border: 5px solid #FFF;
-  border-bottom-color: #FF3D00;
+  border-bottom-color: #093028;
   border-radius: 50%;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
