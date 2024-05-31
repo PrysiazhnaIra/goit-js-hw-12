@@ -19,6 +19,16 @@ let currentSearchQuery = '';
 let page = 1;
 let perPage = 15;
 
+function scrollShiftImages() {
+    const galleryItem = document.querySelector('.gallery_block');
+    const galleryItemHeight = galleryItem.getBoundingClientRect().height;
+  
+    window.scrollBy({
+        top: galleryItemHeight * 2,
+        behavior: 'smooth'
+    });
+}
+
 async function fetchImages(query, page) {
     if(!query) {
         iziToast.warning({
@@ -97,17 +107,19 @@ myForm.addEventListener("submit", (event) => {
 
 showMore.addEventListener('click', (event) => {
     event.preventDefault();
+
     const query = myForm.elements.query.value.trim();
 
     if(query === currentSearchQuery) {
-        page += 1;        
+        page += 1; 
+        fetchImages(query, page).then(() => scrollShiftImages());    
     } else {
         resetGallery();
         currentSearchQuery = query;  
+        fetchImages(query, page);
     }
-
-    fetchImages(query, page);
   });
+
 
 
 
