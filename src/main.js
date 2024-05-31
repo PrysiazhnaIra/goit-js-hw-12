@@ -13,13 +13,13 @@ const myForm = document.querySelector(".form");
 const imagesList = document.querySelector('.images_container');
 
 const spinner = document.querySelector(".loader");
+const showMore = document.querySelector(".btn_more_block");
 
-myForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
+let currentSearchQuery = '';
+let page = 1;
+let perPage = 15;
 
-    imagesList.innerHTML = "";
-    const query = event.target.elements.query.value.trim();
-
+async function fetchImages(query, page) {
     if(!query) {
         iziToast.warning({
             title: 'Warning',
@@ -27,16 +27,35 @@ myForm.addEventListener("submit", async (event) => {
             position: 'topCenter',
         });
 
+        showMore.hidden = true;
+
     } else {
         spinner.hidden = false;
 
         try {
-            let data = await searchImage(query);
+            let data = await searchImage(query, page, perPage);
+
             if(data.data.hits.length != 0) {
                 const markup = imagesTemplate(data.data.hits);
-                imagesList.innerHTML = markup;
                 
+                imagesList.insertAdjacentHTML('beforeend', markup);
                 lightbox.refresh();
+
+                page +=1;
+
+                showMore.hidden = false;
+
+                let totalHits = data.data.totalHits;
+
+                const totalPages = Math.ceil(totalHits / perPage);
+            
+                if (page >= totalPages) {
+                    showMore.hidden = true;
+                    return iziToast.info({
+                      position: "topCenter",
+                      message: "We're sorry, but you've reached the end of search results."
+                    });
+                  }
 
             } else {
                 iziToast.error({
@@ -44,6 +63,8 @@ myForm.addEventListener("submit", async (event) => {
                     message: 'Sorry, there are no images matching your search query. Please try again!',
                     position: 'topCenter',
                 });
+
+                showMore.hidden = true;
             }
         } catch(error) {
                 iziToast.error({
@@ -54,10 +75,39 @@ myForm.addEventListener("submit", async (event) => {
         } finally {
                 spinner.hidden = true;
         }
-    }    
+    }  
+}
+
+function resetGallery() {
+    imagesList.innerHTML = "";
+    page = 1;
+    currentSearchQuery = "";
+}
+
+myForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    resetGallery();
+    const query = event.target.elements.query.value.trim();
+
+    currentSearchQuery = query;
+
+    fetchImages(query, page);
 });
 
+showMore.addEventListener('click', (event) => {
+    event.preventDefault();
+    const query = myForm.elements.query.value.trim();
 
+    if(query === currentSearchQuery) {
+        page += 1;        
+    } else {
+        resetGallery();
+        currentSearchQuery = query;  
+    }
+
+    fetchImages(query, page);
+  });
 
 
 
