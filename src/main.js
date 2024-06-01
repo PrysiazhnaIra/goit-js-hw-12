@@ -59,7 +59,7 @@ async function fetchImages(query, page) {
 
                 const totalPages = Math.ceil(totalHits / perPage);
             
-                if (page >= totalPages) {
+                if (page > totalPages) {
                     showMore.hidden = true;
                     return iziToast.info({
                       position: "topCenter",
