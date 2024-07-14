@@ -14,7 +14,11 @@
 
   color: #242424;
   /* background-color: rgba(255, 255, 255, 0.87); */
-  background: radial-gradient(circle, rgba(37,152,177,0) 0%, rgba(98,151,60,0.9542410714285714) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(37, 151, 177, 0.444) 0%,
+    rgba(98, 151, 60, 0.579) 100%
+  );
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -38,27 +42,25 @@
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
-  letter-spacing: 0,04em;
-
+  letter-spacing: 0, 04em;
 }
 
 .input {
-  border-radius: 4px;
+  border-radius: 20px;
   border: 1px solid #808080;
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 16px;
   width: 272px;
-  background-color: #F0FFF0;
-  outline: #237A57;
-  color: #2E2F42;
+  background-color: #f0fff0;
+  outline: #237a57;
+  color: #2e2f42;
   font-family: Montserrat;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: 0.04em;
-  
 }
 
 .input:focus,
@@ -72,11 +74,16 @@
 
 .btn {
   border: none;
-  border-radius: 8px;
-  background-image: linear-gradient(to right, #093028 0%, #237A57  51%, #093028  100%);
+  border-radius: 20px;
+  background-image: linear-gradient(
+    to right,
+    #093028 0%,
+    #237a57 51%,
+    #093028 100%
+  );
   transition: 0.5s;
   background-size: 200% auto;
-  color: #FFF;
+  color: #fff;
   font-family: Montserrat;
   font-size: 16px;
   font-style: normal;
@@ -91,17 +98,22 @@
   background-position: right center;
 }
 
-.btn_more_block{
+.btn_more_block {
   margin-top: 24px;
 }
 
 .btn_more {
   border: none;
   border-radius: 8px;
-  background-image: linear-gradient(to right, #093028 0%, #237A57  51%, #093028  100%);
+  background-image: linear-gradient(
+    to right,
+    #093028 0%,
+    #237a57 51%,
+    #093028 100%
+  );
   transition: 0.5s;
   background-size: 200% auto;
-  color: #FFF;
+  color: #fff;
   font-family: Montserrat;
   font-size: 16px;
   font-style: normal;
@@ -135,9 +147,10 @@
   border: 1px solid #808080;
 }
 
-.picture{
+.picture {
   height: 200px;
   width: 360px;
+  object-fit: cover;
 }
 
 .property_list {
@@ -150,11 +163,11 @@
   padding-bottom: 4px;
   padding-left: 20px;
   padding-right: 25px;
-  background-color: #F0FFF0;
+  background-color: #f0fff0;
 }
 
 .property_elem {
-  color: #2E2F42;
+  color: #2e2f42;
   font-family: Montserrat;
   font-size: 12px;
   font-style: normal;
@@ -166,7 +179,7 @@
 }
 
 .span_property {
-  color: #2E2F42;
+  color: #2e2f42;
   font-family: Montserrat;
   font-size: 12px;
   font-style: normal;
@@ -180,19 +193,19 @@
 .loader {
   width: 48px;
   height: 48px;
-  border: 5px solid #FFF;
+  border: 5px solid #fff;
   border-bottom-color: #093028;
   border-radius: 50%;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
   margin: auto;
-  }
+}
 
-  @keyframes rotation {
+@keyframes rotation {
   0% {
-      transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
-  } 
+}
